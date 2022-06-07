@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'humber-angular-assignment-3';
+export class AppComponent implements OnInit{
+  title = 'humber-angular-assignment-2';
+
+  ngOnInit() {
+  }
 }
