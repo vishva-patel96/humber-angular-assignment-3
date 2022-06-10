@@ -6,7 +6,7 @@
         <mat-label>First Name</mat-label> 
         <input matInput formControlName="firstName" type="text" />
         <mat-error *ngIf="checkoutFormGroup.controls['firstName'].hasError('required')">
-            FirstName is required.
+            First Name is required.
         </mat-error>
     </mat-form-field>
 
@@ -14,7 +14,7 @@
         <mat-label>Last Name</mat-label> 
         <input matInput formControlName="lastName" type="text" id="lastName" name="lastName"/>
         <mat-error *ngIf="checkoutFormGroup.controls['lastName'].hasError('required')">
-            LastName is required.
+            Last Name is required.
         </mat-error>
     </mat-form-field>
 
@@ -39,6 +39,9 @@
         <input matInput formControlName="postalCode" type="text" id="postalCode" name="postalCode"/>
         <mat-error *ngIf="checkoutFormGroup.controls['postalCode'].hasError('required')">
             Postal Code is required.
+        </mat-error>
+        <mat-error *ngIf="checkoutFormGroup.controls['postalCode'].hasError('pattern')">
+            Only numerical digits are allowed.
         </mat-error>
     </mat-form-field>
 
