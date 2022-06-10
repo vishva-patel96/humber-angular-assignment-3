@@ -13,6 +13,7 @@ export class ItemComponent implements OnInit {
   constructor(private dataStore: DataStoreService) { }
 
   ngOnInit(): void {
+    
   }
 
   addToCart(product: ProductData) {

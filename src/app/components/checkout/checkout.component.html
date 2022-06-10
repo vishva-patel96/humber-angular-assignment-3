@@ -1,0 +1,59 @@
+
+<form [formGroup]="checkoutFormGroup" (ngSubmit)="checkOutCart()">
+    <div class="form-container">
+
+    <mat-form-field>
+        <mat-label>First Name</mat-label> 
+        <input matInput formControlName="firstName" type="text" />
+        <mat-error *ngIf="checkoutFormGroup.controls['firstName'].hasError('required')">
+            FirstName is required.
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Last Name</mat-label> 
+        <input matInput formControlName="lastName" type="text" id="lastName" name="lastName"/>
+        <mat-error *ngIf="checkoutFormGroup.controls['lastName'].hasError('required')">
+            LastName is required.
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Address:</mat-label> 
+        <input matInput formControlName="address" type="text" id="address" name="address"/>
+        <mat-error *ngIf="checkoutFormGroup.controls['address'].hasError('required')">
+            Address is required.
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>City:</mat-label> 
+        <input matInput formControlName="city" type="text" id="city" name="city"/>
+        <mat-error *ngIf="checkoutFormGroup.controls['city'].hasError('required')">
+            City is required.
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>PostalCode:</mat-label> 
+        <input matInput formControlName="postalCode" type="text" id="postalCode" name="postalCode"/>
+        <mat-error *ngIf="checkoutFormGroup.controls['postalCode'].hasError('required')">
+            Postal Code is required.
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Country</mat-label>
+        <mat-select formControlName="country">
+          <mat-option *ngFor="let country of countries" value="country">
+            {{ country }}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+</div>
+
+    <div>
+        <button type="submit">Checkout</button>
+    </div>
+</form>
