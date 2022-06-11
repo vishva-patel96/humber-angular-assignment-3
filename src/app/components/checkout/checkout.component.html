@@ -54,6 +54,40 @@
         </mat-select>
     </mat-form-field>
 
+    <mat-form-field>
+        <mat-label>Card Type</mat-label>
+        <mat-select formControlName="country">
+          <mat-option *ngFor="let card of cards" value="card">
+            {{ card }}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Card Number</mat-label> 
+        <input #cardNumber matInput formControlName="creditCardNumber" type="text" id="creditCardNumber" name="creditCardNumber" maxlength="16"/>
+        <mat-hint align="end">{{cardNumber.value?.length || 0}}/16</mat-hint>
+        <mat-error *ngIf="checkoutFormGroup.controls['creditCardNumber'].hasError('required')">
+            Credit Card Number is required.
+        </mat-error>
+        <mat-error *ngIf="checkoutFormGroup.controls['creditCardNumber'].hasError('pattern')">
+            Only numerical digits are allowed.
+        </mat-error>
+    </mat-form-field>
+
+
+      <mat-form-field>
+        <mat-label>CVC</mat-label> 
+        <input #cvc matInput formControlName="cvc" type="text" id="cvc" name="cvc" maxlength="4"/>
+        <mat-hint align="end">{{cvc.value?.length || 0}}/4</mat-hint>
+        <mat-error *ngIf="checkoutFormGroup.controls['cvc'].hasError('required')">
+            CVC Number is required.
+        </mat-error>
+        <mat-error *ngIf="checkoutFormGroup.controls['cvc'].hasError('pattern')">
+            Only numerical digits are allowed.
+        </mat-error>
+    </mat-form-field>
+
 </div>
 
     <div>

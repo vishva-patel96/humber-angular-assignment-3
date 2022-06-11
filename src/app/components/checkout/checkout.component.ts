@@ -7,20 +7,22 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./checkout.component.scss']
 })
 export class CheckoutComponent implements OnInit {
-  isSubmitted = false;
-  countries: any = ['Canada','USA'];
+
+  isSubmitted:boolean = false;
+  countries: string[] = ['Canada','USA'];
+  cards:string[] = ['VISA', 'MasterCard']
 
   checkoutFormGroup: FormGroup = new FormGroup({
       firstName:  new FormControl('', Validators.required),
       lastName:  new FormControl('',Validators.required),
       address:  new FormControl('',Validators.required),
       city:  new FormControl('',Validators.required),
-      postalCode:  new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
+      postalCode:  new FormControl('', Validators.required),
       country:  new FormControl(''),
       card:  new FormControl('', Validators.required),
-      creditCardNumber:  new FormControl('', Validators.required),
-      expiry:  new FormControl('', Validators.required),
-      cvc:  new FormControl('', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
+      creditCardNumber:  new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
+      expiry:  new FormControl([Validators.required]),
+      cvc:  new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
       nameOfCard:  new FormControl('', Validators.required)
     });
 
@@ -32,5 +34,7 @@ export class CheckoutComponent implements OnInit {
   checkOutCart(){
 
   }
+
+
 
 }
