@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-
+import { Router } from '@angular/router';
 
 export interface DialogData {
   orderNumber: string;
@@ -14,8 +14,11 @@ export interface DialogData {
 })
 export class CheckoutDialogueComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<CheckoutDialogueComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,) { }
+  constructor(
+    private router: Router,
+    public dialogRef: MatDialogRef<CheckoutDialogueComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    ) { }
 
   ngOnInit(): void {
   }
@@ -23,6 +26,7 @@ export class CheckoutDialogueComponent implements OnInit {
   onNoClick() {
     console.log('Dialogue button is working !!!');
     this.dialogRef.close();
+    this.router.navigateByUrl('products');
   }
 
 }

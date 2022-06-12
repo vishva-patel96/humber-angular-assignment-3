@@ -30,24 +30,32 @@ export class CheckoutComponent implements OnInit {
       nameOnCard:  new FormControl('', Validators.required)
     });
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private dataStoreService: DataStoreService) { }
 
   ngOnInit(): void {
   }
 
   checkOutCart(){
     console.log(this.checkoutFormGroup.invalid);
+    const orderNumber = this.generateOrderNumber();
+    const total = this.dataStoreService.getcarttotal();
+
     const checkOutDialogRef = this.dialog.open(CheckoutDialogueComponent ,{
-      width: '250px',
+      width: '500px',
       data: {
-        orderNumber: 'XXXXXXXXX',
-        total: '$500'
+        orderNumber: orderNumber,
+        total: `$${total}`
       }
     })
 
     checkOutDialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+  }
+
+  generateOrderNumber(): number {
+    let orderNumber = Math.floor(Math.random() * 10000000000);
+    return orderNumber;
   }
 
   }
