@@ -27,6 +27,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
+import { CheckoutDialogueComponent } from './components/checkout-dialogue/checkout-dialogue.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import {MatSelectModule} from '@angular/material/select';
     ItemComponent,
     CartItemComponent,
     OrderItemComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    CheckoutDialogueComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -57,10 +61,12 @@ import {MatSelectModule} from '@angular/material/select';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDialogModule
   ],
   providers: [DatePipe,
-    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'standard'}}],
+    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'standard'}}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -17,8 +17,13 @@ export class DataStoreService {
   cartItems$: Observable<ProductData[]> = this._cartItems.asObservable();
   private fullProductList!: ProductData[]
 
+  carttotal: number = 0;
 
   constructor() { }
+
+  getcarttotal() {
+    return this.carttotal;
+  }
 
   setProducts(products: ProductData[]) {
     this._products.next(products);

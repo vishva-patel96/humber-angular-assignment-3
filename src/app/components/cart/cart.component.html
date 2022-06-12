@@ -7,7 +7,11 @@
     <h1>Your cart is empty</h1>
 </div>
 
+<div class="flex" *ngIf="(cartItems$ | async)?.length !== 0">
+    <h1>Your Total is {{ cartItemsTotal}} </h1>
+</div>
+
 <div class="button-container">
-    <button mat-button (click)="clearCart()">Clear Cart</button>
-    <button class="checkout" mat-button [routerLink]="['/checkout']">Checkout</button>
-  </div>
+    <button mat-button (click)="clearCart()" [disabled]="(cartItems$ | async)?.length === 0">Clear Cart</button>
+    <button class="checkout" mat-button [routerLink]="['/checkout']" [disabled]="(cartItems$ | async)?.length === 0">Checkout</button>
+</div>

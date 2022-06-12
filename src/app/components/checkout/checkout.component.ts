@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DataStoreService } from 'src/app/services/data-store.service';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { CheckoutDialogueComponent } from '../checkout-dialogue/checkout-dialogue.component';
 
 @Component({
   selector: 'checkout',
@@ -11,6 +14,7 @@ export class CheckoutComponent implements OnInit {
   isSubmitted:boolean = false;
   countries: string[] = ['Canada','USA'];
   cards:string[] = ['VISA', 'MasterCard']
+
 
   checkoutFormGroup: FormGroup = new FormGroup({
       firstName:  new FormControl('', Validators.required),
@@ -26,15 +30,24 @@ export class CheckoutComponent implements OnInit {
       nameOnCard:  new FormControl('', Validators.required)
     });
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
   checkOutCart(){
     console.log(this.checkoutFormGroup.invalid);
+    const checkOutDialogRef = this.dialog.open(CheckoutDialogueComponent ,{
+      width: '250px',
+      data: {
+        orderNumber: 'XXXXXXXXX',
+        total: '$500'
+      }
+    })
+
+    checkOutDialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
-
-
-}
+  }

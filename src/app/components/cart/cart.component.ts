@@ -9,11 +9,14 @@ import { DataStoreService } from 'src/app/services/data-store.service';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
+
   cartItems$!: Observable<ProductData[]>;
+  cartItemsTotal: number = 0;
   constructor(private dataStore: DataStoreService) { }
 
   ngOnInit(): void {
     this.cartItems$ = this.dataStore.cartItems$;
+    this.cartItemsTotal = this.dataStore.getcarttotal();
   }
 
   clearCart() {

@@ -28,6 +28,7 @@ export class NavBarComponent {
       this.cartTotal = 0
       items.forEach((item)=>{
         this.cartTotal += Number(item.price.replace('$',''))
+        this.dataStore.carttotal = this.cartTotal
       })
     })
   }
