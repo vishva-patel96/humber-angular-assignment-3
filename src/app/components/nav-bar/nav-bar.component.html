@@ -2,7 +2,8 @@
     <h1>{{ title }}</h1>
     <search-bar (textEntered)="onSearch($event)"></search-bar>
     <a routerLink="/products">Products</a>
-    <a routerLink="/cart">Cart</a>
+    <a routerLink="/cart">Cart<p *ngIf="cartItems?.length"> Total: {{ cartTotal }} </p></a>
     <a routerLink="/orders">Orders</a>
     <a routerLink="/account-info">Account Info</a>
+    
 </div>
