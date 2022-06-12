@@ -20,10 +20,10 @@ export class CheckoutComponent implements OnInit {
       postalCode:  new FormControl('', Validators.required),
       country:  new FormControl(''),
       card:  new FormControl('', Validators.required),
-      creditCardNumber:  new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
-      expiry:  new FormControl([Validators.required]),
-      cvc:  new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
-      nameOfCard:  new FormControl('', Validators.required)
+      creditCardNumber:  new FormControl('', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
+      // expiry:  new FormControl([Validators.required]),
+      cvc:  new FormControl('', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
+      nameOnCard:  new FormControl('', Validators.required)
     });
 
   constructor() { }
@@ -32,7 +32,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   checkOutCart(){
-
+    console.log(this.checkoutFormGroup.invalid);
   }
 
 

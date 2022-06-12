@@ -19,7 +19,7 @@
     </mat-form-field>
 
     <mat-form-field>
-        <mat-label>Address:</mat-label> 
+        <mat-label>Address</mat-label> 
         <input matInput formControlName="address" type="text" id="address" name="address"/>
         <mat-error *ngIf="checkoutFormGroup.controls['address'].hasError('required')">
             Address is required.
@@ -27,7 +27,7 @@
     </mat-form-field>
 
     <mat-form-field>
-        <mat-label>City:</mat-label> 
+        <mat-label>City</mat-label> 
         <input matInput formControlName="city" type="text" id="city" name="city"/>
         <mat-error *ngIf="checkoutFormGroup.controls['city'].hasError('required')">
             City is required.
@@ -35,7 +35,7 @@
     </mat-form-field>
 
     <mat-form-field>
-        <mat-label>PostalCode:</mat-label> 
+        <mat-label>Postal Code</mat-label> 
         <input matInput formControlName="postalCode" type="text" id="postalCode" name="postalCode"/>
         <mat-error *ngIf="checkoutFormGroup.controls['postalCode'].hasError('required')">
             Postal Code is required.
@@ -56,7 +56,7 @@
 
     <mat-form-field>
         <mat-label>Card Type</mat-label>
-        <mat-select formControlName="country">
+        <mat-select formControlName="card">
           <mat-option *ngFor="let card of cards" value="card">
             {{ card }}
           </mat-option>
@@ -88,9 +88,17 @@
         </mat-error>
     </mat-form-field>
 
+    <mat-form-field>
+        <mat-label>Name on the Card</mat-label> 
+        <input matInput formControlName="nameOnCard" type="text" id="nameOnCard" name="nameOnCard"/>
+        <mat-error *ngIf="checkoutFormGroup.controls['nameOnCard'].hasError('required')">
+            Name on the card is required.
+        </mat-error>
+    </mat-form-field>
+
 </div>
 
     <div>
-        <button type="submit">Checkout</button>
+        <button mat-button type="submit" [disabled]="checkoutFormGroup.invalid">Submit</button>
     </div>
 </form>
