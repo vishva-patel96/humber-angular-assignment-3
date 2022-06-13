@@ -1,8 +1,10 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DataStoreService } from 'src/app/services/data-store.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { CheckoutDialogueComponent } from '../checkout-dialogue/checkout-dialogue.component';
+import { DOCUMENT } from '@angular/common'; 
+import { take } from 'rxjs';
 
 @Component({
   selector: 'checkout',
@@ -30,12 +32,33 @@ export class CheckoutComponent implements OnInit {
       nameOnCard:  new FormControl('', Validators.required)
     });
 
-  constructor(public dialog: MatDialog, private dataStoreService: DataStoreService) { }
+  constructor(
+    public dialog: MatDialog, 
+    private dataStoreService: DataStoreService,
+    @Inject(DOCUMENT) document: Document) { }
 
   ngOnInit(): void {
   }
 
-  checkOutCart(){
+  checkOutCart(event: Event){
+
+    console.log("####### Form Data #######");
+    console.log( {
+      firstName:  this.checkoutFormGroup.controls['firstName'].value,
+      lastName:  this.checkoutFormGroup.controls['lastName'].value,
+      address:  this.checkoutFormGroup.controls['address'].value,
+      city:  this.checkoutFormGroup.controls['city'].value,
+      postalCode:  this.checkoutFormGroup.controls['postalCode'].value,
+      country: this.checkoutFormGroup.controls['country'].value,
+      card: this.checkoutFormGroup.controls['card'].value,
+      creditCardNumber: this.checkoutFormGroup.controls['creditCardNumber'].value,
+      // expiry:  new FormControl([Validators.required]),
+      cvc: this.checkoutFormGroup.controls['cvc'].value,
+      nameOnCard: this.checkoutFormGroup.controls['nameOnCard'].value
+    });
+
+    console.log("####### Cart Details #######");
+    this.dataStoreService.cartItems$.pipe(take(1)).subscribe(value => console.log(value));
 
     // generate the new Order number and compute total
     const orderNumber = this.generateOrderNumber();

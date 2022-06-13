@@ -4,7 +4,7 @@
 
     <mat-form-field>
         <mat-label>First Name</mat-label> 
-        <input matInput formControlName="firstName" type="text" />
+        <input matInput formControlName="firstName" type="text" id="firstName" name="firstName"/>
         <mat-error *ngIf="checkoutFormGroup.controls['firstName'].hasError('required')">
             First Name is required.
         </mat-error>
@@ -100,6 +100,6 @@
 
     <div>
         <!-- <button mat-button type="submit" [disabled]="checkoutFormGroup.invalid">Submit</button> -->
-        <button mat-button type="submit" (click)="checkOutCart()">Submit</button>
+        <button mat-button type="submit" (click)="checkOutCart($event)">Submit</button>
     </div>
 </form>
