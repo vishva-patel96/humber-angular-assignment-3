@@ -33,6 +33,12 @@ export class DataStoreService {
     this._orders.next(orders);
   }
 
+  addOrder(order: OrderData) {
+    const currentOrders = this._orders.value;
+    const updatedOrders = [...currentOrders, order];
+    this.setOrders(updatedOrders);
+  }
+
   clearCart() {
     this._cartItems.next([]);
   }

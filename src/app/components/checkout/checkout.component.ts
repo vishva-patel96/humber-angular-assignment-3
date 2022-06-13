@@ -36,10 +36,19 @@ export class CheckoutComponent implements OnInit {
   }
 
   checkOutCart(){
-    console.log(this.checkoutFormGroup.invalid);
+
+    // generate the new Order number and compute total
     const orderNumber = this.generateOrderNumber();
     const total = this.dataStoreService.getcarttotal();
 
+    // Add the new order to the list of orders
+    this.dataStoreService.addOrder(
+      {
+        orderNumber: orderNumber.toString(),
+        total: `$${total.toString()}`
+    });
+    
+    // Open the dialog box to show the confirmation
     const checkOutDialogRef = this.dialog.open(CheckoutDialogueComponent ,{
       width: '500px',
       data: {
@@ -48,11 +57,18 @@ export class CheckoutComponent implements OnInit {
       }
     })
 
+    /**
+     * Clear the cart after closing the confirmation dialog
+     */
     checkOutDialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      this.dataStoreService.clearCart();
     });
   }
 
+  /**
+   * Helper function to compute ramdom 10 digit order number.
+   * @returns number
+   */
   generateOrderNumber(): number {
     let orderNumber = Math.floor(Math.random() * 10000000000);
     return orderNumber;

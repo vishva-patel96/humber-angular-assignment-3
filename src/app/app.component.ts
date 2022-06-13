@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductsService } from './services/products.service';
 
 
 @Component({
@@ -9,7 +10,10 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit{
   title = 'humber-angular-assignment-2';
 
-  ngOnInit() : void{
+  constructor(private productsService: ProductsService){}
 
+  ngOnInit() : void {
+    this.productsService.getProducts();
+    this.productsService.getOrderData();
   }
 }

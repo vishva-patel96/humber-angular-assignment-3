@@ -26,7 +26,6 @@ export class CheckoutDialogueComponent implements OnInit {
   onNoClick() {
     console.log('Dialogue button is working !!!');
     this.dialogRef.close();
-    this.router.navigateByUrl('products');
   }
 
 }
