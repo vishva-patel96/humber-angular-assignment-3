@@ -23,6 +23,9 @@ export class CheckoutDialogueComponent implements OnInit {
   ngOnInit(): void {
   }
 
+/**
+ * On dialog close, redirect to homepage 
+ */
   onCloseClick() {
     this.dialogRef.close();
     this.router.navigateByUrl('products');

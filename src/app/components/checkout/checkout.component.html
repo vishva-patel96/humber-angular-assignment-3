@@ -75,6 +75,16 @@
         </mat-error>
     </mat-form-field>
 
+    <mat-form-field>
+        <mat-label>Expiry Date:</mat-label> 
+        <input #expiry matInput formControlName="expiry" type="expiry" id="expiry" name="expiry" />
+        <mat-error *ngIf="checkoutFormGroup.controls['expiry'].hasError('required')">
+            Card Expiry Date is required.
+        </mat-error>
+        <mat-error *ngIf="checkoutFormGroup.controls['expiry'].hasError('pattern')">
+            Format should be MM/YYYY.
+        </mat-error>
+    </mat-form-field>
 
       <mat-form-field>
         <mat-label>CVC</mat-label> 
@@ -100,6 +110,6 @@
 
     <div>
         <!-- <button mat-button type="submit" [disabled]="checkoutFormGroup.invalid">Submit</button> -->
-        <button mat-button type="submit" (click)="checkOutCart($event)">Submit</button>
+        <button mat-button type="submit" (click)="checkOutCart()">Submit</button>
     </div>
 </form>

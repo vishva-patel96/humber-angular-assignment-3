@@ -27,20 +27,19 @@ export class CheckoutComponent implements OnInit {
       country:  new FormControl(''),
       card:  new FormControl('', Validators.required),
       creditCardNumber:  new FormControl('', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
-      // expiry:  new FormControl([Validators.required]),
+      expiry:  new FormControl('', [Validators.required, Validators.pattern(/(0[1-9]|10|11|12)\/20[0-9]{2}$/)]),
       cvc:  new FormControl('', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
       nameOnCard:  new FormControl('', Validators.required)
     });
 
   constructor(
     public dialog: MatDialog, 
-    private dataStoreService: DataStoreService,
-    @Inject(DOCUMENT) document: Document) { }
+    private dataStoreService: DataStoreService) { }
 
   ngOnInit(): void {
   }
 
-  checkOutCart(event: Event){
+  checkOutCart(){
 
     console.log("####### Form Data #######");
     console.log( {
@@ -52,7 +51,7 @@ export class CheckoutComponent implements OnInit {
       country: this.checkoutFormGroup.controls['country'].value,
       card: this.checkoutFormGroup.controls['card'].value,
       creditCardNumber: this.checkoutFormGroup.controls['creditCardNumber'].value,
-      // expiry:  new FormControl([Validators.required]),
+      expiry:  this.checkoutFormGroup.controls['expiry'].value,
       cvc: this.checkoutFormGroup.controls['cvc'].value,
       nameOnCard: this.checkoutFormGroup.controls['nameOnCard'].value
     });
