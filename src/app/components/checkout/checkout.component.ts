@@ -24,7 +24,7 @@ export class CheckoutComponent implements OnInit {
       address:  new FormControl('',Validators.required),
       city:  new FormControl('',Validators.required),
       postalCode:  new FormControl('', Validators.required),
-      country:  new FormControl(''),
+      country:  new FormControl('', Validators.required),
       card:  new FormControl('', Validators.required),
       creditCardNumber:  new FormControl('', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
       expiry:  new FormControl('', [Validators.required, Validators.pattern(/(0[1-9]|10|11|12)\/20[0-9]{2}$/)]),
